@@ -1,0 +1,457 @@
+[
+  {
+    "date": "2026-05-03",
+    "total_fleet_mileage": 9824,
+    "co2_emissions_tons": 2.31,
+    "idle_time_hours": 12,
+    "active_vehicles_count": 39
+  },
+  {
+    "date": "2026-05-02",
+    "total_fleet_mileage": 9969,
+    "co2_emissions_tons": 2.43,
+    "idle_time_hours": 14.3,
+    "active_vehicles_count": 40
+  },
+  {
+    "date": "2026-05-01",
+    "total_fleet_mileage": 10113,
+    "co2_emissions_tons": 2.56,
+    "idle_time_hours": 16.5,
+    "active_vehicles_count": 42
+  },
+  {
+    "date": "2026-04-30",
+    "total_fleet_mileage": 10255,
+    "co2_emissions_tons": 2.67,
+    "idle_time_hours": 18.4,
+    "active_vehicles_count": 43
+  },
+  {
+    "date": "2026-04-29",
+    "total_fleet_mileage": 10396,
+    "co2_emissions_tons": 2.78,
+    "idle_time_hours": 15.9,
+    "active_vehicles_count": 44
+  },
+  {
+    "date": "2026-04-28",
+    "total_fleet_mileage": 10534,
+    "co2_emissions_tons": 2.47,
+    "idle_time_hours": 17,
+    "active_vehicles_count": 45
+  },
+  {
+    "date": "2026-04-27",
+    "total_fleet_mileage": 10670,
+    "co2_emissions_tons": 2.56,
+    "idle_time_hours": 17.6,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-04-26",
+    "total_fleet_mileage": 10524,
+    "co2_emissions_tons": 2.63,
+    "idle_time_hours": 17.9,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-04-25",
+    "total_fleet_mileage": 10655,
+    "co2_emissions_tons": 2.69,
+    "idle_time_hours": 13.8,
+    "active_vehicles_count": 48
+  },
+  {
+    "date": "2026-04-24",
+    "total_fleet_mileage": 10783,
+    "co2_emissions_tons": 2.74,
+    "idle_time_hours": 13.6,
+    "active_vehicles_count": 49
+  },
+  {
+    "date": "2026-04-23",
+    "total_fleet_mileage": 10910,
+    "co2_emissions_tons": 2.38,
+    "idle_time_hours": 13.2,
+    "active_vehicles_count": 49
+  },
+  {
+    "date": "2026-04-22",
+    "total_fleet_mileage": 11034,
+    "co2_emissions_tons": 2.41,
+    "idle_time_hours": 13,
+    "active_vehicles_count": 50
+  },
+  {
+    "date": "2026-04-21",
+    "total_fleet_mileage": 11157,
+    "co2_emissions_tons": 2.44,
+    "idle_time_hours": 9,
+    "active_vehicles_count": 50
+  },
+  {
+    "date": "2026-04-20",
+    "total_fleet_mileage": 11280,
+    "co2_emissions_tons": 2.46,
+    "idle_time_hours": 9.3,
+    "active_vehicles_count": 51
+  },
+  {
+    "date": "2026-04-19",
+    "total_fleet_mileage": 11122,
+    "co2_emissions_tons": 2.48,
+    "idle_time_hours": 10,
+    "active_vehicles_count": 52
+  },
+  {
+    "date": "2026-04-18",
+    "total_fleet_mileage": 11245,
+    "co2_emissions_tons": 2.11,
+    "idle_time_hours": 11.2,
+    "active_vehicles_count": 53
+  },
+  {
+    "date": "2026-04-17",
+    "total_fleet_mileage": 11369,
+    "co2_emissions_tons": 2.14,
+    "idle_time_hours": 8.7,
+    "active_vehicles_count": 55
+  },
+  {
+    "date": "2026-04-16",
+    "total_fleet_mileage": 11494,
+    "co2_emissions_tons": 2.17,
+    "idle_time_hours": 10.7,
+    "active_vehicles_count": 57
+  },
+  {
+    "date": "2026-04-15",
+    "total_fleet_mileage": 11622,
+    "co2_emissions_tons": 2.22,
+    "idle_time_hours": 12.9,
+    "active_vehicles_count": 40
+  },
+  {
+    "date": "2026-04-14",
+    "total_fleet_mileage": 11751,
+    "co2_emissions_tons": 2.27,
+    "idle_time_hours": 15.2,
+    "active_vehicles_count": 41
+  },
+  {
+    "date": "2026-04-13",
+    "total_fleet_mileage": 11883,
+    "co2_emissions_tons": 1.94,
+    "idle_time_hours": 13.5,
+    "active_vehicles_count": 42
+  },
+  {
+    "date": "2026-04-12",
+    "total_fleet_mileage": 11738,
+    "co2_emissions_tons": 2.02,
+    "idle_time_hours": 15.6,
+    "active_vehicles_count": 43
+  },
+  {
+    "date": "2026-04-11",
+    "total_fleet_mileage": 11875,
+    "co2_emissions_tons": 2.11,
+    "idle_time_hours": 17.5,
+    "active_vehicles_count": 44
+  },
+  {
+    "date": "2026-04-10",
+    "total_fleet_mileage": 12015,
+    "co2_emissions_tons": 2.21,
+    "idle_time_hours": 18.9,
+    "active_vehicles_count": 45
+  },
+  {
+    "date": "2026-04-09",
+    "total_fleet_mileage": 12156,
+    "co2_emissions_tons": 2.32,
+    "idle_time_hours": 16,
+    "active_vehicles_count": 46
+  },
+  {
+    "date": "2026-04-08",
+    "total_fleet_mileage": 12299,
+    "co2_emissions_tons": 2.03,
+    "idle_time_hours": 16.5,
+    "active_vehicles_count": 46
+  },
+  {
+    "date": "2026-04-07",
+    "total_fleet_mileage": 12443,
+    "co2_emissions_tons": 2.16,
+    "idle_time_hours": 16.8,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-04-06",
+    "total_fleet_mileage": 12587,
+    "co2_emissions_tons": 2.28,
+    "idle_time_hours": 16.6,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-04-05",
+    "total_fleet_mileage": 12452,
+    "co2_emissions_tons": 2.4,
+    "idle_time_hours": 12.4,
+    "active_vehicles_count": 48
+  },
+  {
+    "date": "2026-04-04",
+    "total_fleet_mileage": 12596,
+    "co2_emissions_tons": 2.52,
+    "idle_time_hours": 12,
+    "active_vehicles_count": 49
+  },
+  {
+    "date": "2026-04-03",
+    "total_fleet_mileage": 12738,
+    "co2_emissions_tons": 2.24,
+    "idle_time_hours": 11.8,
+    "active_vehicles_count": 50
+  },
+  {
+    "date": "2026-04-02",
+    "total_fleet_mileage": 12879,
+    "co2_emissions_tons": 2.35,
+    "idle_time_hours": 11.8,
+    "active_vehicles_count": 51
+  },
+  {
+    "date": "2026-04-01",
+    "total_fleet_mileage": 13019,
+    "co2_emissions_tons": 2.45,
+    "idle_time_hours": 8.2,
+    "active_vehicles_count": 52
+  },
+  {
+    "date": "2026-03-31",
+    "total_fleet_mileage": 13156,
+    "co2_emissions_tons": 2.54,
+    "idle_time_hours": 9,
+    "active_vehicles_count": 54
+  },
+  {
+    "date": "2026-03-30",
+    "total_fleet_mileage": 13291,
+    "co2_emissions_tons": 2.62,
+    "idle_time_hours": 10.2,
+    "active_vehicles_count": 55
+  },
+  {
+    "date": "2026-03-29",
+    "total_fleet_mileage": 13145,
+    "co2_emissions_tons": 2.29,
+    "idle_time_hours": 11.9,
+    "active_vehicles_count": 55
+  },
+  {
+    "date": "2026-03-28",
+    "total_fleet_mileage": 13276,
+    "co2_emissions_tons": 2.35,
+    "idle_time_hours": 9.9,
+    "active_vehicles_count": 38
+  },
+  {
+    "date": "2026-03-27",
+    "total_fleet_mileage": 13406,
+    "co2_emissions_tons": 2.41,
+    "idle_time_hours": 12.1,
+    "active_vehicles_count": 39
+  },
+  {
+    "date": "2026-03-26",
+    "total_fleet_mileage": 13534,
+    "co2_emissions_tons": 2.46,
+    "idle_time_hours": 14.4,
+    "active_vehicles_count": 40
+  },
+  {
+    "date": "2026-03-25",
+    "total_fleet_mileage": 13662,
+    "co2_emissions_tons": 2.51,
+    "idle_time_hours": 16.7,
+    "active_vehicles_count": 41
+  },
+  {
+    "date": "2026-03-24",
+    "total_fleet_mileage": 13789,
+    "co2_emissions_tons": 2.15,
+    "idle_time_hours": 14.8,
+    "active_vehicles_count": 42
+  },
+  {
+    "date": "2026-03-23",
+    "total_fleet_mileage": 13917,
+    "co2_emissions_tons": 2.2,
+    "idle_time_hours": 16.6,
+    "active_vehicles_count": 43
+  },
+  {
+    "date": "2026-03-22",
+    "total_fleet_mileage": 13766,
+    "co2_emissions_tons": 2.25,
+    "idle_time_hours": 18,
+    "active_vehicles_count": 45
+  },
+  {
+    "date": "2026-03-21",
+    "total_fleet_mileage": 13896,
+    "co2_emissions_tons": 2.31,
+    "idle_time_hours": 18.9,
+    "active_vehicles_count": 46
+  },
+  {
+    "date": "2026-03-20",
+    "total_fleet_mileage": 14028,
+    "co2_emissions_tons": 2.37,
+    "idle_time_hours": 15.5,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-03-19",
+    "total_fleet_mileage": 14161,
+    "co2_emissions_tons": 2.05,
+    "idle_time_hours": 15.6,
+    "active_vehicles_count": 48
+  },
+  {
+    "date": "2026-03-18",
+    "total_fleet_mileage": 14297,
+    "co2_emissions_tons": 2.13,
+    "idle_time_hours": 15.5,
+    "active_vehicles_count": 49
+  },
+  {
+    "date": "2026-03-17",
+    "total_fleet_mileage": 14436,
+    "co2_emissions_tons": 2.22,
+    "idle_time_hours": 15.2,
+    "active_vehicles_count": 50
+  },
+  {
+    "date": "2026-03-16",
+    "total_fleet_mileage": 14576,
+    "co2_emissions_tons": 2.33,
+    "idle_time_hours": 10.8,
+    "active_vehicles_count": 51
+  },
+  {
+    "date": "2026-03-15",
+    "total_fleet_mileage": 14438,
+    "co2_emissions_tons": 2.44,
+    "idle_time_hours": 10.7,
+    "active_vehicles_count": 51
+  },
+  {
+    "date": "2026-03-14",
+    "total_fleet_mileage": 14582,
+    "co2_emissions_tons": 2.16,
+    "idle_time_hours": 10.7,
+    "active_vehicles_count": 52
+  },
+  {
+    "date": "2026-03-13",
+    "total_fleet_mileage": 14727,
+    "co2_emissions_tons": 2.29,
+    "idle_time_hours": 11.2,
+    "active_vehicles_count": 53
+  },
+  {
+    "date": "2026-03-12",
+    "total_fleet_mileage": 14873,
+    "co2_emissions_tons": 2.42,
+    "idle_time_hours": 8,
+    "active_vehicles_count": 54
+  },
+  {
+    "date": "2026-03-11",
+    "total_fleet_mileage": 15019,
+    "co2_emissions_tons": 2.55,
+    "idle_time_hours": 9.3,
+    "active_vehicles_count": 56
+  },
+  {
+    "date": "2026-03-10",
+    "total_fleet_mileage": 15165,
+    "co2_emissions_tons": 2.68,
+    "idle_time_hours": 11,
+    "active_vehicles_count": 39
+  },
+  {
+    "date": "2026-03-09",
+    "total_fleet_mileage": 15310,
+    "co2_emissions_tons": 2.41,
+    "idle_time_hours": 13,
+    "active_vehicles_count": 41
+  },
+  {
+    "date": "2026-03-08",
+    "total_fleet_mileage": 15173,
+    "co2_emissions_tons": 2.52,
+    "idle_time_hours": 11.3,
+    "active_vehicles_count": 42
+  },
+  {
+    "date": "2026-03-07",
+    "total_fleet_mileage": 15314,
+    "co2_emissions_tons": 2.63,
+    "idle_time_hours": 13.6,
+    "active_vehicles_count": 43
+  },
+  {
+    "date": "2026-03-06",
+    "total_fleet_mileage": 15453,
+    "co2_emissions_tons": 2.73,
+    "idle_time_hours": 15.9,
+    "active_vehicles_count": 45
+  },
+  {
+    "date": "2026-03-05",
+    "total_fleet_mileage": 15590,
+    "co2_emissions_tons": 2.82,
+    "idle_time_hours": 17.9,
+    "active_vehicles_count": 46
+  },
+  {
+    "date": "2026-03-04",
+    "total_fleet_mileage": 15724,
+    "co2_emissions_tons": 2.49,
+    "idle_time_hours": 15.7,
+    "active_vehicles_count": 47
+  },
+  {
+    "date": "2026-03-03",
+    "total_fleet_mileage": 15855,
+    "co2_emissions_tons": 2.56,
+    "idle_time_hours": 17,
+    "active_vehicles_count": 48
+  },
+  {
+    "date": "2026-03-02",
+    "total_fleet_mileage": 15984,
+    "co2_emissions_tons": 2.61,
+    "idle_time_hours": 17.9,
+    "active_vehicles_count": 48
+  },
+  {
+    "date": "2026-03-01",
+    "total_fleet_mileage": 15830,
+    "co2_emissions_tons": 2.65,
+    "idle_time_hours": 18.3,
+    "active_vehicles_count": 49
+  },
+  {
+    "date": "2026-02-28",
+    "total_fleet_mileage": 15955,
+    "co2_emissions_tons": 2.68,
+    "idle_time_hours": 14.4,
+    "active_vehicles_count": 49
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "alert_id": "ALT-00001",
+    "severity": "Medium",
+    "vehicle_id": "VH-0008",
+    "message": "Geofence boundary crossed",
+    "timestamp": "2026-05-03T08:40:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00002",
+    "severity": "Low",
+    "vehicle_id": "VH-0015",
+    "message": "Low tire pressure — rear axle",
+    "timestamp": "2026-05-03T07:27:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00003",
+    "severity": "High",
+    "vehicle_id": "VH-0022",
+    "message": "Harsh braking event",
+    "timestamp": "2026-05-03T06:14:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00004",
+    "severity": "Medium",
+    "vehicle_id": "VH-0029",
+    "message": "Battery voltage below threshold",
+    "timestamp": "2026-05-03T05:01:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00005",
+    "severity": "Low",
+    "vehicle_id": "VH-0036",
+    "message": "Oil temperature elevated",
+    "timestamp": "2026-05-03T04:48:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00006",
+    "severity": "High",
+    "vehicle_id": "VH-0043",
+    "message": "Driver card authentication failed",
+    "timestamp": "2026-05-03T03:35:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00007",
+    "severity": "Medium",
+    "vehicle_id": "VH-0050",
+    "message": "Auxiliary heating fault",
+    "timestamp": "2026-05-03T02:22:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00008",
+    "severity": "Low",
+    "vehicle_id": "VH-0002",
+    "message": "Coolant level low",
+    "timestamp": "2026-05-03T01:09:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00009",
+    "severity": "High",
+    "vehicle_id": "VH-0009",
+    "message": "ABS warning — inspection required",
+    "timestamp": "2026-05-02T23:56:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00010",
+    "severity": "Medium",
+    "vehicle_id": "VH-0016",
+    "message": "Engine fault code 42",
+    "timestamp": "2026-05-02T23:43:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00011",
+    "severity": "Low",
+    "vehicle_id": "VH-0023",
+    "message": "Geofence boundary crossed",
+    "timestamp": "2026-05-02T22:30:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00012",
+    "severity": "High",
+    "vehicle_id": "VH-0030",
+    "message": "Low tire pressure — rear axle",
+    "timestamp": "2026-05-02T21:17:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00013",
+    "severity": "Medium",
+    "vehicle_id": "VH-0037",
+    "message": "Harsh braking event",
+    "timestamp": "2026-05-02T20:04:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00014",
+    "severity": "Low",
+    "vehicle_id": "VH-0044",
+    "message": "Battery voltage below threshold",
+    "timestamp": "2026-05-02T19:51:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00015",
+    "severity": "High",
+    "vehicle_id": "VH-0051",
+    "message": "Oil temperature elevated",
+    "timestamp": "2026-05-02T18:38:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00016",
+    "severity": "Medium",
+    "vehicle_id": "VH-0003",
+    "message": "Driver card authentication failed",
+    "timestamp": "2026-05-02T17:25:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00017",
+    "severity": "Low",
+    "vehicle_id": "VH-0010",
+    "message": "Auxiliary heating fault",
+    "timestamp": "2026-05-02T16:12:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00018",
+    "severity": "High",
+    "vehicle_id": "VH-0017",
+    "message": "Coolant level low",
+    "timestamp": "2026-05-02T14:59:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00019",
+    "severity": "Medium",
+    "vehicle_id": "VH-0024",
+    "message": "ABS warning — inspection required",
+    "timestamp": "2026-05-02T14:46:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00020",
+    "severity": "Low",
+    "vehicle_id": "VH-0031",
+    "message": "Engine fault code 42",
+    "timestamp": "2026-05-02T13:33:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00021",
+    "severity": "High",
+    "vehicle_id": "VH-0038",
+    "message": "Geofence boundary crossed",
+    "timestamp": "2026-05-02T12:20:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00022",
+    "severity": "Medium",
+    "vehicle_id": "VH-0045",
+    "message": "Low tire pressure — rear axle",
+    "timestamp": "2026-05-02T11:07:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00023",
+    "severity": "Low",
+    "vehicle_id": "VH-0052",
+    "message": "Harsh braking event",
+    "timestamp": "2026-05-02T09:54:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00024",
+    "severity": "High",
+    "vehicle_id": "VH-0004",
+    "message": "Battery voltage below threshold",
+    "timestamp": "2026-05-02T09:41:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00025",
+    "severity": "Medium",
+    "vehicle_id": "VH-0011",
+    "message": "Oil temperature elevated",
+    "timestamp": "2026-05-02T08:28:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00026",
+    "severity": "Low",
+    "vehicle_id": "VH-0018",
+    "message": "Driver card authentication failed",
+    "timestamp": "2026-05-02T07:15:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00027",
+    "severity": "High",
+    "vehicle_id": "VH-0025",
+    "message": "Auxiliary heating fault",
+    "timestamp": "2026-05-02T06:02:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00028",
+    "severity": "Medium",
+    "vehicle_id": "VH-0032",
+    "message": "Coolant level low",
+    "timestamp": "2026-05-02T05:49:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00029",
+    "severity": "Low",
+    "vehicle_id": "VH-0039",
+    "message": "ABS warning — inspection required",
+    "timestamp": "2026-05-02T04:36:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00030",
+    "severity": "High",
+    "vehicle_id": "VH-0046",
+    "message": "Engine fault code 42",
+    "timestamp": "2026-05-02T03:23:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00031",
+    "severity": "Medium",
+    "vehicle_id": "VH-0053",
+    "message": "Geofence boundary crossed",
+    "timestamp": "2026-05-02T02:10:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00032",
+    "severity": "Low",
+    "vehicle_id": "VH-0005",
+    "message": "Low tire pressure — rear axle",
+    "timestamp": "2026-05-02T00:57:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00033",
+    "severity": "High",
+    "vehicle_id": "VH-0012",
+    "message": "Harsh braking event",
+    "timestamp": "2026-05-02T00:44:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00034",
+    "severity": "Medium",
+    "vehicle_id": "VH-0019",
+    "message": "Battery voltage below threshold",
+    "timestamp": "2026-05-01T23:31:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00035",
+    "severity": "Low",
+    "vehicle_id": "VH-0026",
+    "message": "Oil temperature elevated",
+    "timestamp": "2026-05-01T22:18:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00036",
+    "severity": "High",
+    "vehicle_id": "VH-0033",
+    "message": "Driver card authentication failed",
+    "timestamp": "2026-05-01T21:05:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00037",
+    "severity": "Medium",
+    "vehicle_id": "VH-0040",
+    "message": "Auxiliary heating fault",
+    "timestamp": "2026-05-01T20:52:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00038",
+    "severity": "Low",
+    "vehicle_id": "VH-0047",
+    "message": "Coolant level low",
+    "timestamp": "2026-05-01T19:39:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00039",
+    "severity": "High",
+    "vehicle_id": "VH-0054",
+    "message": "ABS warning — inspection required",
+    "timestamp": "2026-05-01T18:26:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00040",
+    "severity": "Medium",
+    "vehicle_id": "VH-0006",
+    "message": "Engine fault code 42",
+    "timestamp": "2026-05-01T17:13:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00041",
+    "severity": "Low",
+    "vehicle_id": "VH-0013",
+    "message": "Geofence boundary crossed",
+    "timestamp": "2026-05-01T16:00:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00042",
+    "severity": "High",
+    "vehicle_id": "VH-0020",
+    "message": "Low tire pressure — rear axle",
+    "timestamp": "2026-05-01T15:47:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00043",
+    "severity": "Medium",
+    "vehicle_id": "VH-0027",
+    "message": "Harsh braking event",
+    "timestamp": "2026-05-01T14:34:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00044",
+    "severity": "Low",
+    "vehicle_id": "VH-0034",
+    "message": "Battery voltage below threshold",
+    "timestamp": "2026-05-01T13:21:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00045",
+    "severity": "High",
+    "vehicle_id": "VH-0041",
+    "message": "Oil temperature elevated",
+    "timestamp": "2026-05-01T12:08:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00046",
+    "severity": "Medium",
+    "vehicle_id": "VH-0048",
+    "message": "Driver card authentication failed",
+    "timestamp": "2026-05-01T10:55:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00047",
+    "severity": "Low",
+    "vehicle_id": "VH-0055",
+    "message": "Auxiliary heating fault",
+    "timestamp": "2026-05-01T10:42:38.194Z"
+  },
+  {
+    "alert_id": "ALT-00048",
+    "severity": "High",
+    "vehicle_id": "VH-0007",
+    "message": "Coolant level low",
+    "timestamp": "2026-05-01T09:29:38.194Z"
+  }
+]

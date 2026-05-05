@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+/* Manual theme toggle: dark:* must follow `.dark` on <html>, not OS preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Design tokens: Navy-Cyan palette - Refined for premium look */
+  --color-navy-950: #020617;
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #334155;
+  --color-navy-600: #475569;
+  --color-navy-500: #64748b;
+  --color-navy-400: #94a3b8;
+  --color-navy-300: #cbd5e1;
+
+  --color-accent-500: #0ea5e9;
+  --color-accent-400: #38bdf8;
+  --color-accent-300: #7dd3fc;
+  --color-accent-200: #bae6fd;
+
+  --color-glow-cyan: rgb(14 165 233 / 0.15);
+  --color-glow-blue: rgb(37 99 235 / 0.12);
+  --color-glow-violet: rgb(124 58 237 / 0.10);
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-feature-settings: 'ss01' 1, 'cv01' 1, 'cv11' 1, 'calt' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.011em;
+  color: #0f172a; /* slate-900 for max contrast in light mode */
+  background: #f8fafc;
+}
+
+html.dark body {
+  color: #f8fafc; /* slate-50 for max contrast in dark mode */
+  background: #020617;
+}
+
+/* ─── Global text clarity overrides ─── */
+.dark .text-slate-500, .dark .text-slate-400 {
+  color: #94a3b8; /* Force slate-400 for secondary text in dark mode for better visibility */
+}
+
+.text-slate-500 {
+  color: #475569; /* slate-600 (navy-600) for secondary text in light mode for better weight */
+}
+
+/* ─── Typography Utility ─── */
+h1, h2, h3, .font-black, .font-bold {
+  letter-spacing: -0.025em;
+}
+
+.tracking-widest {
+  letter-spacing: 0.1em !important;
+}
+
+/* ─── Atmospheric depth — dark mode ambient glow ─── */
+html.dark .jc-app-layer {
+  background:
+    radial-gradient(ellipse 130% 70% at 50% -25%, rgb(14 165 233 / 0.15), transparent 55%),
+    radial-gradient(ellipse 60% 45% at 100% 0%, rgb(59 130 246 / 0.10), transparent 40%),
+    linear-gradient(180deg, #020617 0%, #030a1a 100%);
+}
+
+html:not(.dark) .jc-app-layer {
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -20%, rgb(14 165 233 / 0.12), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* ─── Soft ambient pulse ─── */
+@media (prefers-reduced-motion: no-preference) {
+  html.dark .jc-pulse-soft {
+    animation: jc-pulse-soft 18s ease-in-out infinite alternate;
+  }
+  html.dark .jc-pulse-soft-delay {
+    animation: jc-pulse-soft 20s ease-in-out infinite alternate;
+    animation-delay: -8s;
+  }
+}
+
+@keyframes jc-pulse-soft {
+  from { opacity: 0.7; transform: scale(1); }
+  to   { opacity: 1; transform: scale(1.04); }
+}
+
+/* ─── Glassmorphism card base ─── */
+.jc-glass {
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(255 255 255 / 0.03);
+  backdrop-filter: blur(20px) saturate(1.5);
+  box-shadow:
+    0 0 0 1px rgb(34 211 238 / 0.04) inset,
+    0 20px 50px -16px rgb(0 0 0 / 0.5);
+}
+
+html:not(.dark) .jc-glass {
+  border-color: rgb(226 232 240 / 1);
+  background: rgb(255 255 255 / 0.97);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 1px 3px 0 rgb(0 0 0 / 0.06),
+    0 1px 2px -1px rgb(0 0 0 / 0.06);
+}
+
+/* ─── Scanline effect for hero sections ─── */
+.jc-scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgb(34 211 238 / 0.015) 2px,
+    rgb(34 211 238 / 0.015) 4px
+  );
+  border-radius: inherit;
+}
+
+/* ─── Neon border glow for widgets ─── */
+.jc-neon-border {
+  position: relative;
+}
+.jc-neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgb(34 211 238 / 0.25), transparent 40%, transparent 60%, rgb(99 102 241 / 0.15));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.jc-neon-border:hover::before {
+  opacity: 1;
+}
+
+/* ─── react-grid-layout ─── */
+.react-grid-layout {
+  position: relative;
+}
+
+.react-grid-item.react-grid-placeholder {
+  border-radius: 1rem;
+  background: rgb(34 211 238 / 0.10);
+  box-shadow:
+    inset 0 0 0 2px rgb(34 211 238 / 0.30),
+    0 0 30px rgb(34 211 238 / 0.15);
+  opacity: 1;
+  z-index: 2;
+  transition-duration: 150ms;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  border-color: rgb(34 211 238 / 0.4);
+  border-width: 0 3px 3px 0;
+}
+
+/* ─── Leaflet ─── */
+.leaflet-container {
+  z-index: 0;
+}
+
+.leaflet-tooltip.jc-tip {
+  border: 1px solid rgb(34 211 238 / 0.30) !important;
+  border-radius: 0.875rem !important;
+  background: transparent !important;
+  box-shadow:
+    0 16px 48px rgb(2 8 23 / 0.65),
+    0 0 0 1px rgb(34 211 238 / 0.06) inset !important;
+  padding: 0 !important;
+}
+
+html:not(.dark) .leaflet-tooltip.jc-tip {
+  border-color: rgb(226 232 240 / 1) !important;
+  box-shadow:
+    0 8px 30px rgb(0 0 0 / 0.12),
+    0 0 0 1px rgb(226 232 240 / 0.5) inset !important;
+}
+
+.leaflet-tooltip-bottom.jc-tip::before {
+  border-bottom-color: rgb(34 211 238 / 0.30);
+}
+
+html:not(.dark) .leaflet-tooltip-bottom.jc-tip::before {
+  border-bottom-color: rgb(226 232 240 / 1);
+}
+
+/* Legacy-style divIcon markers */
+.leaflet-div-icon.jc-legacy-marker-wrap {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(100 116 139 / 0.3);
+  border-radius: 999px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgb(148 163 184 / 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(100 116 139 / 0.5);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgb(148 163 184 / 0.3);
+}
+
+/* ─── Shimmer loading effect ─── */
+@keyframes jc-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.jc-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.jc-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(34 211 238 / 0.06), transparent);
+  animation: jc-shimmer 2s ease-in-out infinite;
+}
+
+/* ─── Status dot pulsing ─── */
+@keyframes jc-status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+.jc-status-dot-active {
+  animation: jc-status-pulse 2s ease-in-out infinite;
+}
