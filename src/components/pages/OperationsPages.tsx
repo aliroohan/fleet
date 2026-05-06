@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useMemo, useState } from 'react'
+import { Truck } from 'lucide-react'
 import {
   Bar,
   BarChart,
@@ -14,7 +15,7 @@ import {
 import { getLastNDaysTrips } from '../../data/fleetData'
 import { useMockFleet } from '../../hooks/useMockFleet'
 import { useChartPalette } from '../../lib/chartTheme'
-import { useAppDispatch } from '../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { focusVehicle } from '../../store/uiSlice'
 import type { FleetVehicle, UnitCategory } from '../../types/fleet'
 import type { AppTab } from '../TopNav'
@@ -70,11 +71,7 @@ function MiniStat({
 }
 
 
-function statusPill(status: FleetVehicle['status']): string {
-  if (status === 'Active') return 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-300 dark:ring-emerald-400/20'
-  if (status === 'Maintenance') return 'bg-rose-100 text-rose-700 ring-1 ring-rose-200 dark:bg-rose-500/15 dark:text-rose-300 dark:ring-rose-400/20'
-  return 'bg-slate-100 text-slate-600 ring-1 ring-slate-200 dark:bg-white/[0.04] dark:text-slate-300 dark:ring-white/[0.06]'
-}
+
 
 function satTone(v: FleetVehicle['satellite_status']): string {
   if (v === 'connected') return 'text-emerald-400'
@@ -144,7 +141,7 @@ function TracksPage() {
             </select>
           </div>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <BarChart data={series}>
                 <CartesianGrid stroke={palette.grid} strokeDasharray="3 3" />
                 <XAxis
@@ -200,94 +197,137 @@ function TracksPage() {
 
 
 function DriversPage() {
-  const { fleet, alerts } = useMockFleet()
+  const { fleet } = useMockFleet()
   const drivers = useMemo(
     () => [...fleet].sort((a, b) => a.driver_name.localeCompare(b.driver_name)),
     [fleet],
   )
-  const topRiskDrivers = useMemo(
-    () =>
-      drivers
-        .map((d) => ({
-          driver: d,
-          alerts: alerts.filter((a) => a.vehicle_id === d.vehicle_id && a.severity !== 'Low').length,
-        }))
-        .sort((a, b) => b.alerts - a.alerts || b.driver.hours_driven_today - a.driver.hours_driven_today)
-        .slice(0, 6),
-    [drivers, alerts],
-  )
 
   return (
-    <section className="grid gap-4 xl:grid-cols-12">
-      <div className="xl:col-span-8">
-        <Card title="Driver Registry" subtitle="Assignment, workload, satellite quality and tachograph watchlist">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-left text-xs">
-              <thead>
-                <tr className="border-b border-slate-200 dark:border-white/[0.06]">
-                  <th className="pb-3 pr-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Driver</th>
-                  <th className="pb-3 pr-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Unit</th>
-                  <th className="pb-3 pr-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Category</th>
-                  <th className="pb-3 pr-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Hours</th>
-                  <th className="pb-3 pr-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Link</th>
-                  <th className="pb-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {drivers.map((v) => (
-                  <tr
-                    key={v.vehicle_id}
-                    className="border-b border-slate-100 transition-colors hover:bg-slate-50 dark:border-white/[0.04] dark:hover:bg-white/[0.02]"
-                  >
-                    <td className="py-3 pr-3 font-bold text-slate-900 dark:text-white">
-                      {v.driver_name}
-                    </td>
-                    <td className="py-3 pr-3 font-mono font-bold text-slate-500 dark:text-slate-300">
-                      {v.vehicle_id}
-                    </td>
-                    <td className="py-3 pr-3 font-bold text-slate-400 dark:text-slate-500">{v.unit_category}</td>
-                    <td className="py-3 pr-3 font-black tabular-nums text-slate-900 dark:text-white">
-                      {v.hours_driven_today.toFixed(1)} h
-                    </td>
-                    <td className={`py-3 pr-3 font-black tracking-widest text-[10px] ${satTone(v.satellite_status)}`}>
-                      {v.satellite_status.toUpperCase()}
-                    </td>
-                    <td className="py-3 font-bold text-slate-500 dark:text-slate-400">
-                      {v.hours_driven_today >= 9
-                        ? <span className="text-rose-400">Review</span>
-                        : v.hours_driven_today >= 7
-                          ? <span className="text-amber-400">Watch</span>
-                          : 'OK'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+    <section className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white">Fleet Operators</h1>
+          <p className="text-sm font-bold text-slate-500 uppercase tracking-widest mt-1">Real-time driver compliance and status Registry</p>
+        </div>
       </div>
-      <div className="space-y-4 xl:col-span-4">
-        <Card title="Driver Risk Queue">
-          <div className="space-y-2">
-            {topRiskDrivers.map((row) => (
-              <button
-                key={row.driver.vehicle_id}
-                type="button"
-                className="w-full rounded-xl border border-slate-100 bg-slate-50/50 p-3 text-left transition-all hover:bg-slate-100 dark:border-white/[0.06] dark:bg-white/[0.03] dark:hover:bg-white/[0.06]"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <p className="font-bold text-slate-900 dark:text-white">{row.driver.driver_name}</p>
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wider ${statusPill(row.driver.status)}`}>
-                    {row.driver.status}
+
+      <div className="flex flex-col gap-4">
+        {drivers.map((v) => (
+          <Card key={v.vehicle_id} title={""}>
+            <div className="flex flex-col gap-6">
+              {/* Main Info Header Row */}
+              <div className="grid grid-cols-2 md:grid-cols-7 gap-4 items-center text-left">
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Availability</p>
+                  <div className="flex items-center gap-2">
+                    <div className={`size-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] ${v.status !== 'Active' ? 'opacity-50' : ''}`} />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Driver Name</p>
+                  <p className="text-sm font-black text-slate-900 dark:text-white">{v.driver_name}</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Driver Code</p>
+                  <p className="text-sm font-bold text-slate-600 dark:text-slate-400 font-mono">{v.driver_code}</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Salary Number</p>
+                  <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{v.salary_number}</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Vehicle</p>
+                  <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{v.vehicle_id}</p>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Location</p>
+                  <div className="text-[11px] font-bold text-slate-600 dark:text-slate-400 leading-tight">
+                    <p className="truncate" title={v.location_address}>{v.location_address}</p>
+                    <p className="text-[9px] text-slate-400 mt-0.5">{v.location_timestamp}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1 items-end md:items-start">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Status</p>
+                  <span className={`px-3 py-1 rounded-md text-white text-[10px] font-black uppercase tracking-wider shadow-lg ${v.status === 'Active' ? 'bg-emerald-500 shadow-emerald-500/20' : 'bg-slate-400 shadow-slate-400/20'}`}>
+                    {v.status === 'Active' ? 'Driving' : v.status}
                   </span>
                 </div>
-                <p className="mt-1 text-[11px] font-bold text-slate-400">
-                  {row.driver.vehicle_id} · {row.driver.hours_driven_today.toFixed(1)}h · {row.alerts} active alerts
-                </p>
-              </button>
-            ))}
-          </div>
-        </Card>
+              </div>
+
+              {/* Compliance Bars Row */}
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-6 border-t border-slate-50 dark:border-white/[0.04] pt-6">
+                <DetailBar 
+                  label="Uninterrupted" 
+                  time={v.uninterrupted_driving_time || "01:26"} 
+                  percent={35} 
+                  color="bg-emerald-500" 
+                  subtext="03:04 of uninterrupted driving left"
+                />
+                <DetailBar 
+                  label="Daily Driving" 
+                  time={v.daily_driving_time || "09:50"} 
+                  percent={98} 
+                  color="bg-amber-400" 
+                  subtext="Next daily rest: 05/05/2026 05:09:36"
+                  isStriped
+                />
+                <DetailBar 
+                  label="Weekly Driving" 
+                  time={v.weekly_driving_time || "09:50"} 
+                  percent={18} 
+                  color="bg-emerald-500" 
+                  subtext="Next weekly rest: 09/05/2026 08:00:32"
+                  isStriped
+                />
+                <DetailBar 
+                  label="2 Weeks Driving" 
+                  time={v.two_weeks_driving_time || "41:27"} 
+                  percent={45} 
+                  color="bg-emerald-500" 
+                />
+                <DetailBar 
+                  label="Service Time" 
+                  time={v.service_time || "04:19"} 
+                  percent={85} 
+                  color="bg-rose-500" 
+                  subtexts={["Allowed hours (21)", "Service hours start: 04/05/2028 14:09:36"]}
+                  isStriped
+                />
+              </div>
+
+              {/* Indicators Row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                 <div className="flex items-start gap-3">
+                    <div className="flex gap-1 pt-0.5">
+                      {[...Array(v.ten_h_driving_days || 2)].map((_, i) => <div key={i} className="size-3 rounded-sm bg-emerald-400/60" />)}
+                    </div>
+                    <p className="text-[10px] font-bold text-slate-500">10h driving days</p>
+                 </div>
+                 <div className="flex flex-col gap-4">
+                    <div className="flex items-start gap-3">
+                       <div className="flex gap-1 pt-0.5">
+                         {[...Array(v.nine_h_rest_periods || 3)].map((_, i) => <div key={i} className="size-3 rounded-sm bg-emerald-400/60" />)}
+                       </div>
+                       <p className="text-[10px] font-bold text-slate-500">9h rest periods</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                       <div className="flex gap-1 pt-0.5">
+                         {[...Array(v.nine_h_rest_periods || 3)].map((_, i) => <div key={i} className="size-3 rounded-sm bg-amber-400" />)}
+                       </div>
+                       <p className="text-[10px] font-bold text-slate-500">9h rest periods calculated (no data)</p>
+                    </div>
+                 </div>
+                 <div className="flex items-start gap-3">
+                    <div className="flex gap-1 pt-0.5">
+                      {v.reduced_weekly_rest === 1 && <div className="size-3 rounded-sm bg-rose-400" />}
+                    </div>
+                    <p className="text-[10px] font-bold text-slate-500">Reduced weekly rest</p>
+                 </div>
+              </div>
+            </div>
+          </Card>
+        ))}
       </div>
     </section>
   )
@@ -650,7 +690,7 @@ function ReportsPage() {
       <div className="space-y-4 xl:col-span-8">
         <Card title="Analytics stream" subtitle="Fleet-wide metrics synthesized from historical mission data">
           <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <LineChart data={trend}>
                 <CartesianGrid stroke={palette.grid} strokeDasharray="3 3" />
                 <XAxis dataKey="day" stroke={palette.tick} tick={{ fontSize: 11, fontWeight: 600 }} />
@@ -706,10 +746,247 @@ function ReportsPage() {
   )
 }
 
-export function OperationsPageContent({ activeTab }: { activeTab: AppTab }) {
+function VehicleDetailPage() {
+  const { fleet, alerts } = useMockFleet()
+  const focusedId = useAppSelector((s) => s.ui.focusedVehicleId)
+  const vehicle = focusedId
+    ? (fleet.find((v) => v.vehicle_id === focusedId) ?? null)
+    : fleet[0]
+
+  if (!vehicle) return null
+
+  const vehicleAlerts = alerts.filter(a => a.vehicle_id === vehicle.vehicle_id)
+
+  return (
+    <section className="grid gap-6 xl:grid-cols-12">
+      <div className="xl:col-span-4 space-y-6">
+        <Card title="Vehicle Identity">
+          <div className="aspect-video relative overflow-hidden rounded-xl bg-slate-100 dark:bg-white/[0.03] mb-4">
+             {vehicle.image_url ? (
+               <img src={vehicle.image_url} alt={vehicle.vehicle_id} className="h-full w-full object-cover" />
+             ) : (
+               <div className="flex h-full w-full items-center justify-center">
+                 <Truck size={48} className="text-slate-300" />
+               </div>
+             )}
+          </div>
+          <div className="space-y-4">
+             <MiniStat label="Vehicle ID" value={vehicle.vehicle_id} />
+             <MiniStat label="Category" value={vehicle.unit_category} />
+             <MiniStat label="Fuel Level" value={`${vehicle.fuel_level_percent}%`} tone={vehicle.fuel_level_percent < 20 ? 'danger' : 'default'} />
+          </div>
+        </Card>
+      </div>
+
+      <div className="xl:col-span-8 space-y-6">
+        <Card title="Operational Status" subtitle="Real-time telematics and position data">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.04]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Current Speed</p>
+              <p className="mt-1 text-2xl font-black text-slate-900 dark:text-white">{vehicle.speed_kmh} km/h</p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.04]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</p>
+              <p className="mt-1 text-2xl font-black text-emerald-500">{vehicle.status}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.04]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lat</p>
+              <p className="mt-1 text-lg font-mono font-bold text-slate-700 dark:text-slate-200">{vehicle.current_lat.toFixed(4)}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.04]">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Lng</p>
+              <p className="mt-1 text-lg font-mono font-bold text-slate-700 dark:text-slate-200">{vehicle.current_lng.toFixed(4)}</p>
+            </div>
+          </div>
+        </Card>
+
+        <Card title="Recent Alerts" subtitle="Safety and maintenance log">
+          <div className="space-y-3">
+            {vehicleAlerts.map(alert => (
+              <div key={alert.alert_id} className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-white/[0.02] border border-slate-100 dark:border-white/[0.04]">
+                <div className="flex items-center gap-3">
+                  <div className={`size-2 rounded-full ${alert.severity === 'High' ? 'bg-rose-500' : 'bg-amber-400'}`} />
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">{alert.message}</p>
+                </div>
+                <span className="text-[10px] font-bold text-slate-400">{new Date(alert.timestamp).toLocaleTimeString()}</span>
+              </div>
+            ))}
+            {vehicleAlerts.length === 0 && (
+              <p className="text-sm text-slate-500 text-center py-4">No recent alerts for this vehicle.</p>
+            )}
+          </div>
+        </Card>
+      </div>
+    </section>
+  )
+}
+
+function DriverDetailPage() {
+  const { fleet } = useMockFleet()
+  const focusedId = useAppSelector((s) => s.ui.focusedVehicleId)
+  const vehicle = focusedId
+    ? (fleet.find((v) => v.vehicle_id === focusedId) ?? null)
+    : fleet[0]
+
+  if (!vehicle) return null
+
+  return (
+    <section className="flex flex-col gap-8">
+      {/* Table Header Style Section */}
+      <Card title="Driver Overview">
+        <div className="grid grid-cols-2 md:grid-cols-7 gap-4 items-center text-left py-2">
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Availability</p>
+            <div className="flex items-center gap-2">
+              <div className="size-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Driver Name</p>
+            <p className="text-sm font-black text-slate-900 dark:text-white">{vehicle.driver_name}</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Driver Code</p>
+            <p className="text-sm font-bold text-slate-600 dark:text-slate-400 font-mono">{vehicle.driver_code}</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Salary Number</p>
+            <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{vehicle.salary_number}</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Vehicle</p>
+            <p className="text-sm font-bold text-slate-600 dark:text-slate-400">{vehicle.vehicle_id}</p>
+          </div>
+          <div className="flex flex-col gap-1 col-span-1 md:col-span-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Location</p>
+            <div className="text-[11px] font-bold text-slate-600 dark:text-slate-400 leading-tight">
+              <p className="truncate" title={vehicle.location_address}>{vehicle.location_address}</p>
+              <p className="text-[9px] text-slate-400 mt-0.5">{vehicle.location_timestamp}</p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 items-end md:items-start">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Status</p>
+            <span className="px-3 py-1 rounded-md bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider shadow-lg shadow-emerald-500/20">
+              Driving
+            </span>
+          </div>
+        </div>
+      </Card>
+
+      {/* Compliance Bars Section */}
+      <Card title="Compliance Details">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 py-4">
+          <DetailBar 
+            label="Uninterrupted" 
+            time={vehicle.uninterrupted_driving_time || "01:26"} 
+            percent={35} 
+            color="bg-emerald-500" 
+            subtext="03:04 of uninterrupted driving left"
+          />
+          <DetailBar 
+            label="Daily Driving" 
+            time={vehicle.daily_driving_time || "09:50"} 
+            percent={98} 
+            color="bg-amber-400" 
+            subtext="Next daily rest: 05/05/2026 05:09:36"
+            isStriped
+          />
+          <DetailBar 
+            label="Weekly Driving" 
+            time={vehicle.weekly_driving_time || "09:50"} 
+            percent={18} 
+            color="bg-emerald-500" 
+            subtext="Next weekly rest: 09/05/2026 08:00:32"
+            isStriped
+          />
+          <DetailBar 
+            label="2 Weeks Driving" 
+            time={vehicle.two_weeks_driving_time || "41:27"} 
+            percent={45} 
+            color="bg-emerald-500" 
+          />
+          <DetailBar 
+            label="Service Time" 
+            time={vehicle.service_time || "04:19"} 
+            percent={85} 
+            color="bg-rose-500" 
+            subtexts={["Allowed hours (21)", "Service hours start: 04/05/2028 14:09:36"]}
+            isStriped
+          />
+        </div>
+
+        {/* Square Indicators Section */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-slate-100 dark:border-white/[0.06] pt-8">
+           <div className="flex items-start gap-4">
+              <div className="flex gap-1.5 pt-1">
+                {[...Array(2)].map((_, i) => <div key={i} className="size-4 rounded-sm bg-emerald-400/60" />)}
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-slate-600 dark:text-slate-400">10h driving days</p>
+              </div>
+           </div>
+           <div className="flex flex-col gap-4">
+              <div className="flex items-start gap-4">
+                 <div className="flex gap-1.5 pt-1">
+                   {[...Array(4)].map((_, i) => <div key={i} className="size-4 rounded-sm bg-emerald-400/60" />)}
+                 </div>
+                 <div>
+                   <p className="text-[11px] font-bold text-slate-600 dark:text-slate-400">9h rest periods</p>
+                 </div>
+              </div>
+              <div className="flex items-start gap-4">
+                 <div className="flex gap-1.5 pt-1">
+                   {[...Array(4)].map((_, i) => <div key={i} className="size-4 rounded-sm bg-amber-400" />)}
+                 </div>
+                 <div>
+                   <p className="text-[11px] font-bold text-slate-600 dark:text-slate-400">9h rest periods calculated (no data)</p>
+                 </div>
+              </div>
+           </div>
+           <div className="flex items-start gap-4">
+              <div className="flex gap-1.5 pt-1">
+                <div className="size-4 rounded-sm bg-rose-400" />
+              </div>
+              <div>
+                <p className="text-[11px] font-bold text-slate-600 dark:text-slate-400">Reduced weekly rest</p>
+              </div>
+           </div>
+        </div>
+      </Card>
+    </section>
+  )
+}
+
+function DetailBar({ label, time, percent, color, subtext, subtexts = [], isStriped = false }: { label: string, time: string, percent: number, color: string, subtext?: string, subtexts?: string[], isStriped?: boolean }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-slate-500">
+        <span>{label} <span className="text-slate-400 lowercase">Time</span> ({time})</span>
+      </div>
+      <div className="h-4 w-full rounded bg-slate-100 dark:bg-white/[0.04] overflow-hidden">
+        <div 
+          className={`h-full ${color} ${isStriped ? 'opacity-90' : ''}`} 
+          style={{ 
+            width: `${percent}%`,
+            backgroundImage: isStriped ? 'linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent)' : 'none',
+            backgroundSize: '20px 20px'
+          }} 
+        />
+      </div>
+      {(subtext || subtexts.length > 0) && (
+        <div className="mt-1 flex flex-col gap-0.5">
+          {subtext && <p className="text-[10px] font-bold text-slate-500">{subtext}</p>}
+          {subtexts.map((t, i) => <p key={i} className="text-[10px] font-bold text-slate-400">{t}</p>)}
+        </div>
+      )}
+    </div>
+  )
+}
+
+export function OperationsPageContent({ activeTab, onTabChange }: { activeTab: AppTab, onTabChange: (tab: AppTab) => void }) {
   switch (activeTab) {
     case 'Monitoring':
-      return <MonitoringWorkspace />
+      return <MonitoringWorkspace onTabChange={onTabChange} />
     case 'Notifications':
       return <AlertsPage />
     case 'Reports':
@@ -726,6 +1003,10 @@ export function OperationsPageContent({ activeTab }: { activeTab: AppTab }) {
       return <UsersPage />
     case 'Units':
       return <UnitsPage />
+    case 'VehicleDetail':
+      return <VehicleDetailPage />
+    case 'DriverDetail':
+      return <DriverDetailPage />
     case 'Dashboard':
     default:
       return null

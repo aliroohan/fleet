@@ -205,9 +205,9 @@ export function AppShell() {
 
         <section className="min-h-[520px]" aria-label={`${activeTab} workspace`}>
           {isDashboard ? (
-            <DashboardGrid />
+            <DashboardGrid onTabChange={setActiveTab} />
           ) : (
-            <OperationsPageContent activeTab={activeTab} />
+            <OperationsPageContent activeTab={activeTab} onTabChange={setActiveTab} />
           )}
         </section>
       </main>

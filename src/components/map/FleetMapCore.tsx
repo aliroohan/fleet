@@ -220,7 +220,7 @@ export function FleetMapCore({
                             icon={vehicleLabelDivIcon(v)}
               opacity={isFocus ? 1 : 0.88}
               eventHandlers={{
-                mouseover: () => {
+                click: () => {
                   dispatch(focusVehicle(v.vehicle_id))
                 },
               }}

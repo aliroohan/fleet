@@ -11,6 +11,7 @@ import {
   Box,
   Menu,
   X,
+  Truck,
 } from 'lucide-react'
 import { type ComponentType, useState } from 'react'
 
@@ -22,11 +23,17 @@ const TABS = [
   'Reports',
   'Drivers',
   'Notifications',
+] as const
+
+const HIDDEN_TABS = [
   'Video',
   'Users',
   'Units',
+  'VehicleDetail',
+  'DriverDetail',
 ] as const
-export type AppTab = (typeof TABS)[number]
+
+export type AppTab = (typeof TABS)[number] | (typeof HIDDEN_TABS)[number]
 
 const TAB_ICONS: Record<AppTab, ComponentType<{ className?: string; size?: number }>> = {
   Dashboard: LayoutDashboard,
@@ -39,6 +46,8 @@ const TAB_ICONS: Record<AppTab, ComponentType<{ className?: string; size?: numbe
   Video: Video,
   Users: UserPlus,
   Units: Box,
+  VehicleDetail: Truck,
+  DriverDetail: Users,
 }
 
 export function TopNav({

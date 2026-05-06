@@ -78,8 +78,12 @@ export function VehicleFlyout() {
           <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">
             {/* Vehicle image/icon area matching reference */}
             <div className="mb-5 flex items-center gap-4 rounded-xl border border-slate-100 bg-slate-50 p-4 dark:border-white/[0.06] dark:bg-white/[0.03]">
-              <div className="flex size-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 ring-1 ring-blue-200 dark:from-cyan-500/20 dark:to-blue-600/10 dark:ring-cyan-400/20">
-                <VehicleIcon size={40} className="text-blue-600 dark:text-cyan-200" />
+              <div className="flex size-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 ring-1 ring-blue-200 dark:from-cyan-500/20 dark:to-blue-600/10 dark:ring-cyan-400/20 overflow-hidden">
+                {v.image_url ? (
+                  <img src={v.image_url} alt={v.vehicle_id} className="h-full w-full object-cover" />
+                ) : (
+                  <VehicleIcon size={40} className="text-blue-600 dark:text-cyan-200" />
+                )}
               </div>
               <div>
                 <p className="text-lg font-bold text-slate-800 dark:text-white">{v.vehicle_id}</p>

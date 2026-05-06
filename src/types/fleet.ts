@@ -26,6 +26,19 @@ export interface FleetVehicle {
   unit_category: UnitCategory
   /** Mock speed when Active */
   speed_kmh: number
+  image_url?: string
+  driver_code?: string
+  salary_number?: string
+  location_address?: string
+  location_timestamp?: string
+  uninterrupted_driving_time?: string
+  daily_driving_time?: string
+  weekly_driving_time?: string
+  two_weeks_driving_time?: string
+  service_time?: string
+  ten_h_driving_days?: number
+  nine_h_rest_periods?: number
+  reduced_weekly_rest?: number
 }
 
 export interface TripHistoryRow {

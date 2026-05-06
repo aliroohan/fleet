@@ -10,9 +10,11 @@ import { getWidgetConstraints } from '../data/widgetLayout'
 import { balanceLayoutWidths } from '../lib/balanceLayout'
 import { WidgetRenderer } from './widgets/WidgetRenderer'
 
+import type { AppTab } from './TopNav'
+
 const GridLayoutWithWidth = WidthProvider(ReactGridLayout)
 
-export function DashboardGrid() {
+export function DashboardGrid({ onTabChange }: { onTabChange?: (tab: AppTab) => void }) {
   const dispatch = useAppDispatch()
   const layout = useAppSelector((s) => s.dashboard.layout)
   const widgets = useAppSelector((s) => s.dashboard.widgets)
@@ -72,7 +74,7 @@ export function DashboardGrid() {
             className="relative overflow-hidden rounded-2xl bg-transparent"
           >
             <div className="relative z-0 h-full">
-              <WidgetRenderer id={item.i} type={type} />
+              <WidgetRenderer id={item.i} type={type} onTabChange={onTabChange} />
             </div>
             {editMode ? (
               <button

@@ -53,16 +53,30 @@ export function VehicleHoverCard({ vehicle, trips, alerts, compact = false }: Pr
       <div className={`relative border border-slate-200 bg-white shadow-xl rounded-xl dark:border-sky-500/20 dark:bg-[#020617] dark:shadow-none ${compact ? 'p-3' : 'p-4'}`}>
         <div className="flex items-start gap-3">
           {/* Vehicle icon */}
-          <div className={`flex shrink-0 items-center justify-center rounded-2xl bg-sky-50 ring-1 ring-sky-200 dark:bg-sky-500/10 dark:ring-sky-400/20 ${compact ? 'size-10' : 'size-12'}`}>
-            <VehicleIcon size={compact ? 20 : 24} className="text-sky-600 dark:text-sky-300" />
+          <div className={`flex shrink-0 items-center justify-center rounded-2xl bg-sky-50 ring-1 ring-sky-200 dark:bg-sky-500/10 dark:ring-sky-400/20 overflow-hidden ${compact ? 'size-10' : 'size-12'}`}>
+            {vehicle.image_url ? (
+              <img src={vehicle.image_url} alt={vehicle.vehicle_id} className="h-full w-full object-cover" />
+            ) : (
+              <VehicleIcon size={compact ? 20 : 24} className="text-sky-600 dark:text-sky-300" />
+            )}
           </div>
-          <div className="min-w-0 flex-1">
-            <p className={`${compact ? 'text-base' : 'text-lg'} font-black tracking-tight text-slate-900 dark:text-white`}>
-              {vehicle.vehicle_id}
-            </p>
-            <p className="mt-0.5 truncate text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-              {vehicle.unit_category} · {vehicle.driver_name}
-            </p>
+          <div className="min-w-0 flex-1 flex flex-col gap-2">
+            <div>
+              <p className={`${compact ? 'text-sm' : 'text-base'} font-black tracking-tight text-slate-900 dark:text-white leading-none`}>
+                {vehicle.vehicle_id}
+              </p>
+              <p className="mt-1 truncate text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide leading-none">
+                {vehicle.unit_category}
+              </p>
+            </div>
+            <div>
+              <p className={`${compact ? 'text-sm' : 'text-base'} font-black tracking-tight text-slate-900 dark:text-white leading-none`}>
+                {vehicle.driver_name}
+              </p>
+              <p className="mt-1 truncate text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide leading-none">
+                Driver
+              </p>
+            </div>
           </div>
           <span
             className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-[0.1em] ring-1 ${statusTone(vehicle.status)}`}

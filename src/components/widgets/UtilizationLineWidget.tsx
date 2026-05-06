@@ -36,7 +36,7 @@ export function UtilizationLineWidget({ widgetId }: { widgetId: string }) {
         <p className="p-4 text-sm text-slate-500">Loading…</p>
       ) : (
         <>
-          <ResponsiveContainer width="100%" height="100%">
+          <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <LineChart
               data={data}
               margin={{ top: 8, right: 8, bottom: 0, left: 0 }}

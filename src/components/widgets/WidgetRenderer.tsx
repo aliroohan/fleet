@@ -8,12 +8,16 @@ import { KpiStripWidget } from './KpiStripWidget'
 import { OperationalOverviewWidget } from './OperationalOverviewWidget'
 import { UtilizationLineWidget } from './UtilizationLineWidget'
 
+import type { AppTab } from '../TopNav'
+
 export function WidgetRenderer({
   id,
   type,
+  onTabChange,
 }: {
   id: string
   type: WidgetType
+  onTabChange?: (tab: AppTab) => void
 }) {
   switch (type) {
     case 'kpiStrip':
@@ -23,7 +27,7 @@ export function WidgetRenderer({
     case 'fleetMap':
       return <FleetMapWidget widgetId={id} />
     case 'operationalOverview':
-      return <OperationalOverviewWidget widgetId={id} />
+      return <OperationalOverviewWidget widgetId={id} onTabChange={onTabChange} />
     case 'gauge':
       return <GaugeWidget widgetId={id} />
     case 'co2Bar':

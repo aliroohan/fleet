@@ -25,7 +25,7 @@ export function GaugeWidget({ widgetId }: { widgetId: string }) {
       ) : (
         <div className="flex h-full flex-col items-center justify-center">
           <div className="h-40 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <RadialBarChart
                 innerRadius="68%"
                 outerRadius="100%"

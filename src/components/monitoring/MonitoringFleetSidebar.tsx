@@ -3,6 +3,8 @@ import { useMockFleet } from '../../hooks/useMockFleet'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { focusVehicle, setHover } from '../../store/uiSlice'
 import type { FleetVehicle, SatelliteStatus, VehicleStatus } from '../../types/fleet'
+import type { AppTab } from '../TopNav'
+import { ExternalLink } from 'lucide-react'
 
 
 type SortMode = 'id' | 'status' | 'driver'
@@ -11,9 +13,11 @@ type SortMode = 'id' | 'status' | 'driver'
 export function MonitoringFleetSidebar({
   hiddenIds,
   onToggleOnMap,
+  onTabChange,
 }: {
   hiddenIds: Set<string>
   onToggleOnMap: (vehicleId: string) => void
+  onTabChange: (tab: AppTab) => void
 }) {
   const { fleet, loading } = useMockFleet()
   const dispatch = useAppDispatch()
@@ -137,10 +141,17 @@ export function MonitoringFleetSidebar({
                     className="size-3.5 rounded border-slate-600 text-cyan-500 accent-cyan-500"
                   />
                 </label>
-                <button
-                  type="button"
-                  className="min-w-0 flex-1 text-left outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
+                <div
+                  role="button"
+                  tabIndex={0}
+                  className="min-w-0 flex-1 cursor-pointer text-left outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40 group/item"
                   onClick={() => dispatch(focusVehicle(v.vehicle_id))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      dispatch(focusVehicle(v.vehicle_id))
+                    }
+                  }}
                   onMouseEnter={(e) => {
                     dispatch(setHover({ id: v.vehicle_id, x: e.clientX, y: e.clientY }))
                     dispatch(focusVehicle(v.vehicle_id))
@@ -153,13 +164,29 @@ export function MonitoringFleetSidebar({
                   <div className="flex items-start gap-2">
                     <UnitGlyph category={v.unit_category} />
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold leading-tight text-white">
-                        {displayName(v)}
-                      </p>
-                      <RowStatusRail vehicle={v} />
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-semibold leading-tight text-white group-hover/item:text-cyan-400 transition-colors">
+                          {displayName(v)}
+                        </p>
+                        <div className="flex gap-1">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              dispatch(focusVehicle(v.vehicle_id))
+                              onTabChange('VehicleDetail')
+                            }}
+                            className="p-1 rounded-md bg-white/[0.03] text-slate-500 hover:bg-sky-500/20 hover:text-sky-400 transition-all opacity-0 group-hover/item:opacity-100"
+                            title="Vehicle Details"
+                          >
+                            <ExternalLink size={12} />
+                          </button>
+                        </div>
+                      </div>
+                      <RowStatusRail vehicle={v} onTabChange={onTabChange} />
                     </div>
                   </div>
-                </button>
+                </div>
               </div>
             )
           })
@@ -194,7 +221,7 @@ function UnitGlyph({ category }: { category: FleetVehicle['unit_category'] }) {
   )
 }
 
-function RowStatusRail({ vehicle }: { vehicle: FleetVehicle }) {
+function RowStatusRail({ vehicle, onTabChange }: { vehicle: FleetVehicle, onTabChange: (tab: AppTab) => void }) {
   const fuelLow = vehicle.fuel_level_percent < 35
 
   return (
@@ -213,10 +240,18 @@ function RowStatusRail({ vehicle }: { vehicle: FleetVehicle }) {
         )}{' '}
         <span className={`font-sans text-[9px] font-bold ${satelliteBars(vehicle.satellite_status).tone}`}>{satelliteBars(vehicle.satellite_status).label}</span>
       </span>
-      <span className="inline-flex items-center gap-1 truncate" title="Driver">
+      <button 
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation()
+          onTabChange('DriverDetail')
+        }}
+        className="inline-flex items-center gap-1 truncate hover:text-cyan-400 transition-colors" 
+        title="View Driver Details"
+      >
         <span className="text-cyan-400">⏵</span>
         <span className="max-w-[120px] truncate">{vehicle.driver_name}</span>
-      </span>
+      </button>
       <span title="Fuel (proxy for battery)" className="inline-flex items-center gap-0.5">
         <BatteryIcon warn={fuelLow} />
         <span className={fuelLow ? 'font-semibold text-amber-400' : ''}>
