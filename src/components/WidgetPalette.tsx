@@ -71,8 +71,8 @@ export function WidgetPalette() {
                   htmlFor={inputId}
                   className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3.5 py-3.5 text-sm transition-all ${
                     present
-                      ? 'border-blue-300 bg-blue-50 shadow-sm dark:border-cyan-400/20 dark:bg-gradient-to-r dark:from-cyan-500/10 dark:via-transparent dark:to-transparent dark:shadow-[0_0_20px_-8px_rgb(34_211_238_/_0.3)]'
-                      : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50 dark:border-white/[0.05] dark:hover:border-white/[0.1] dark:hover:bg-white/[0.03]'
+                      ? 'border-blue-300 bg-blue-50 shadow-sm dark:border-cyan-400/30 dark:bg-[#0c1a3a] dark:bg-gradient-to-r dark:from-cyan-500/15 dark:to-transparent dark:shadow-[0_0_20px_-8px_rgb(34_211_238_/_0.3)]'
+                      : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50 dark:border-white/[0.05] dark:bg-white/[0.02] dark:hover:border-white/[0.1] dark:hover:bg-white/[0.05]'
                   }`}
                 >
                   <input
