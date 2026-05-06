@@ -60,7 +60,6 @@ export function OperationalOverviewPanel({ onTabChange }: { onTabChange?: (tab: 
   const VehicleIcon = vehicle ? CATEGORY_VEHICLE_ICONS[vehicle.unit_category] : Truck
 
   const vehicleSeed = vehicle ? parseInt(vehicle.vehicle_id.split('-')[1] || '0', 10) : 0
-  const customers = ['Construction Site', 'Nordic Logistics', 'City Center', 'Main Depot', 'Airport Cargo']
   
   const vehicleAlerts = vehicle ? alerts.filter(a => a.vehicle_id === vehicle.vehicle_id) : []
   const vehicleAlarmsCount = vehicleAlerts.filter(a => a.severity !== 'Low').length
